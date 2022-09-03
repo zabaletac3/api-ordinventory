@@ -15,7 +15,7 @@ server.set('port', PORT);
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
 server.use(cors());
-
+server.use(express.json());
 
 
 

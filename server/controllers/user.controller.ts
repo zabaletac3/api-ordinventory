@@ -25,8 +25,8 @@ export const userController = {
      * @param req 
      * @param res 
      */
-    create: (req: Request, res: Response) => {
-        const registrarUsuario = userRepository.create(req.body);
+    create: async (req: Request, res: Response) => {
+        const registrarUsuario = await userRepository.insert(req.body);
         return res.json({
             ok: true,
             data: registrarUsuario

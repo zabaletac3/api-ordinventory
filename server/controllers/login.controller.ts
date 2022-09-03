@@ -21,12 +21,12 @@ export const loginController = {
         try {
         
             // Validar si existe el usuario
-            const userUsername = req.params.username;
+            // const userUsername = req.params.username;
             const usuario = await userRepository.findOneBy({ username });
             if ( !usuario ) {
                 return res.status(400).json({
                     ok: false,
-                    message: 'Usuario y/o contrasena no son validos'
+                    msg: 'Usuario y/o contrasena no son validos'
                 });
             }
 
@@ -36,7 +36,7 @@ export const loginController = {
         if ( !validPass ) {
             return res.status(400).json({
                 ok: false,
-                message: 'Usuario y/o contrasena no son validos'
+                msg: 'Usuario y/o contrasena no son validos'
             });
         }
 
@@ -45,7 +45,7 @@ export const loginController = {
             res.json({
                 usuario,
                 token,
-                message: 'Login OK'
+                msg: 'Login OK'
             })
 
 
@@ -55,7 +55,7 @@ export const loginController = {
         } catch (error) {
             console.log(error);
             return res.status(500).json({
-                message: ' Error en comunicación '
+                msg: ' Error en comunicación '
             });
         }
     }
