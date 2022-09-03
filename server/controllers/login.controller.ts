@@ -34,7 +34,7 @@ export const loginController = {
         //validar contraseña
         const validPass = bcrypt.compareSync(contrasena, usuario.contrasena);
         if ( !validPass ) {
-            return res.status(400).json({
+            return res.json({
                 ok: false,
                 msg: 'Usuario y/o contrasena no son validos'
             });
@@ -54,7 +54,7 @@ export const loginController = {
 
         } catch (error) {
             console.log(error);
-            return res.status(500).json({
+            return res.json({
                 msg: ' Error en comunicación '
             });
         }
