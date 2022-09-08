@@ -1,4 +1,4 @@
-import {Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn} from 'typeorm'
+import {Column, Entity, JoinColumn, JoinTable, OneToMany, OneToOne, PrimaryGeneratedColumn} from 'typeorm'
 import { Products } from './products.entity';
 
 
@@ -10,12 +10,19 @@ export class Comprobante {
     @PrimaryGeneratedColumn({
         name: 'id_comprobante'
     })
-    id: number;
+    id_comprobante: number;
+
+    @Column({
+        name: 'cod_producto'
+    })
+    cod: number
+
 
     constructor (
-        id: number
+        id_comprobante: number, cod: number
     ){
-        this.id = id;
+        this.id_comprobante = id_comprobante;
+        this.cod = cod;
         
     }
 
