@@ -1,10 +1,13 @@
-import { Entity, Column, PrimaryGeneratedColumn, BaseEntity } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, BaseEntity, ManyToMany, OneToOne, ManyToOne, OneToMany, JoinColumn, Unique } from 'typeorm';
+import { Comprobante } from './comprobant.entity';
+import { Employees } from './employees.entity';
 
 
 
 @Entity({
     name: 'usuarios'
 })
+@Unique(['identificacion'])
 export class User  {
 
     @PrimaryGeneratedColumn({
@@ -17,10 +20,18 @@ export class User  {
     })
     username: string;
 
-    @Column({
-        unique: true
-    })
-    identificacion: number;
+    // @OneToOne ( () => Employees, (employees:Employees) => employees.User )
+    // @JoinColumn({name: 'identificacion'})
+    // Employees!: Employees
+
+    @OneToOne( () => Employees )
+    @JoinColumn({name: 'identificacion'})
+    identificacion!: Employees
+
+    // @Column({
+    //     unique: true
+    // })
+    // identificacion: number;
 
     @Column({
         length: 300
@@ -32,12 +43,15 @@ export class User  {
     })
     role: string;
 
+    @OneToMany   ( () => Comprobante, (comprobante:Comprobante) => comprobante.User )
+    comprobante!:Comprobante
+
+
     constructor(
-        id: number, username: string, identificacion: number, contrasena: string, role: string
+        id: number, username: string, contrasena: string, role: string
     ) {
         this.id = id;
         this.username = username;
-        this.identificacion = identificacion;
         this.contrasena = contrasena;
         this.role = role;
     }

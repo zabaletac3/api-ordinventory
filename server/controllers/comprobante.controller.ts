@@ -1,4 +1,7 @@
-import { Request, Response } from 'express'
+import { equal } from 'assert';
+import { create } from 'domain';
+import { Request, response, Response } from 'express'
+import { body } from 'express-validator';
 import { Code, Repository } from 'typeorm';
 import { AppDataSource } from '../../data-source';
 import { Comprobante } from '../models/comprobant.entity'
@@ -12,13 +15,15 @@ export const comprobanteController = {
 
     comprobante: async (req: Request, res: Response) => {
 
+
         const genComprobante = {
             id_comprobante: req.body.id_comprobante,
-            cod: req.body.cod
+            // productsRepository: req.body.producto
+            Products: req.body.producto
         }
-        
+
         try {
-            const solComprobante = await  comprobanteRepository.insert(genComprobante);
+            const solComprobante = await comprobanteRepository.insert(genComprobante);
             return res.json({
                 ok: true,
                 data: solComprobante,
@@ -27,17 +32,27 @@ export const comprobanteController = {
         } catch (error) {
             console.log(error);
         }
-        
+
     },
+
+    
+
+
 
 
     findAll: async (req: Request, res: Response) => {
-        const comprobanteList = await comprobanteRepository.find();
+        const comprobanteList = await comprobanteRepository.find({
+            relations: ['products'],
+        });
         return res.json({
             ok: true,
             data: comprobanteList
         });
     },
+
+
+
+
 
 
 }

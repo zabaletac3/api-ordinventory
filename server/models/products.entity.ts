@@ -1,4 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, ManyToOne, ManyToMany, JoinColumn, OneToMany } from "typeorm";
+import { Comprobante } from "./comprobant.entity";
+import { DetalleComprobante } from "./detalle.comprobante.entity";
 
 
 @Entity({
@@ -25,6 +27,16 @@ export class Products {
         name: 'existencia'
     })
     existencia: number
+
+    // @OneToOne(() => Comprobante, (comprobante) => comprobante.products)
+    // comprobante!: Comprobante;
+
+    // @ManyToMany(() => Comprobante, (comprobante: Comprobante) => comprobante.Products)
+    // comprobante!: Comprobante
+
+    @ManyToMany( () => DetalleComprobante, (detalleComprobante: DetalleComprobante) => detalleComprobante.producto )
+    detalleComprobante!: DetalleComprobante
+    
 
     constructor ( 
         cod: number, nom_producto: string, precio: number, existencia: number

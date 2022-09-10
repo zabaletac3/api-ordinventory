@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryColumn } from "typeorm";
+import { Column, Entity, OneToOne, PrimaryColumn } from "typeorm";
+import { User } from "./user.entity";
 
 @Entity({
     name: 'empleado'
@@ -44,6 +45,9 @@ export class Employees {
         length: 50
     })
     cargo: string;
+
+    @OneToOne (  () => User, (user: User) => user.identificacion )
+    user!: User
 
     constructor(
         id: number, nombre: string, apellido: string, telefono: string, 
