@@ -1,12 +1,11 @@
+import * as bcrypt from 'bcrypt';
 import { Request, Response } from 'express';
 import { Repository } from 'typeorm';
+
 import { AppDataSource } from '../../data-source';
-import { User } from '../models/user.entity';
-import { Employees } from '../models/employees.entity';
-import * as bcrypt from 'bcrypt';
-import { updateImportEqualsDeclaration, updateShorthandPropertyAssignment } from 'typescript';
-import { resolve } from 'path';
 import { generarJWT } from '../helpers/generar.jwt';
+import { User } from '../models/user.entity';
+
 
 const userRepository: Repository<User> = AppDataSource.getRepository(User);
 
@@ -43,6 +42,7 @@ export const loginController = {
         // Generar JWT
         const token = await generarJWT( usuario.username);
             res.json({
+                ok: true,
                 usuario,
                 token,
                 msg: 'Login OK'
