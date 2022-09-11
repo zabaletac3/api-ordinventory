@@ -1,7 +1,7 @@
-import { Entity, Column, PrimaryGeneratedColumn, BaseEntity, ManyToMany, OneToOne, ManyToOne, OneToMany, JoinColumn, Unique } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn, Unique } from 'typeorm';
+
 import { Comprobante } from './comprobant.entity';
 import { Employees } from './employees.entity';
-
 
 
 @Entity({

@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { Repository } from 'typeorm';
+
 import { AppDataSource } from '../../data-source';
 import { User } from '../models/user.entity';
 
@@ -13,7 +14,7 @@ export const userController = {
      * @param res 
      */
     findAll: async (req: Request, res: Response) => {
-        const userList = await userRepository.find();
+        const userList = await userRepository.find({relations: ['identificacion']});
         res.json({
             ok: true,
             data: userList
