@@ -24,7 +24,7 @@ export class Comprobante {
 
     @ManyToOne( () => User, (user: User) => user.comprobante )
     @JoinColumn({name: 'usuario'})
-    User!: User
+    user!: User
 
     @OneToMany( () => DetalleComprobante, (detalleComprobante: DetalleComprobante) => detalleComprobante.id_comprobante )
     DetalleComprobante!: DetalleComprobante

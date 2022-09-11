@@ -43,7 +43,7 @@ export class User  {
     })
     role: string;
 
-    @OneToMany   ( () => Comprobante, (comprobante:Comprobante) => comprobante.User )
+    @OneToMany   ( () => Comprobante, (comprobante:Comprobante) => comprobante.user )
     comprobante!:Comprobante
 
 

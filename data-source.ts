@@ -14,7 +14,7 @@ export const AppDataSource = new DataSource({
     host: "localhost",
     port: 3306,
     username: "root",
-    password: "admin",
+    password: "Zabaleta3#",
     database: "ord_ventory",
     //synchronize: false,
     logging: false,

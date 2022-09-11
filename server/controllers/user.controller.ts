@@ -40,6 +40,7 @@ export const userController = {
      * @param res 
      */
     findById: async (req: Request, res: Response) => {
+        // const userRelation = req.params.identificacion
         const userId = +req.params.id;
         const foundUser = await userRepository.findOneBy({ id: userId });
         if (foundUser == null) {
